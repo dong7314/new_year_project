@@ -16,7 +16,7 @@ public class UserService {
         // userName 중복 check
         userRepository.findByUserName(userName)
                 .ifPresent(user -> {
-                    throw new RuntimeException(userName + "아이디는 이미 존재합니다.");
+                    throw new RuntimeException(userName + " 아이디는 이미 존재합니다.");
                 });
 
         // 저장

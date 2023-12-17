@@ -1,6 +1,5 @@
 package com.project.year.user.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.year.user.domain.dto.UserJoinRequest;
 import com.project.year.user.service.UserService.UserService;
@@ -12,7 +11,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -49,6 +49,9 @@ class UserControllerTest {
 
         String userName = "dong7314";
         String password = "root1234";
+
+        when(userService.join(any(), any()))
+                .thenThrow(new RuntimeException("해당 userName이 중복됩니다."));
 
         mockMvc.perform(post("/api/v1/users/join")
                         .contentType(MediaType.APPLICATION_JSON)
