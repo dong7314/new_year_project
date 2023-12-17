@@ -1,18 +1,23 @@
 # Swagger springdoc-ui Configuration
 springdoc:
-  packages-to-scan: com.project.year
-  default-consumes-media-type: application/json;charset=UTF-8
-  default-produces-media-type: application/json;charset=UTF-8
-  swagger-ui:
-    path: swagger-ui.html            # Swagger UI ?? => localhost:8000/demo-ui.html
-    tags-sorter: alpha            # alpha: ??? ? ?? ??, method: HTTP Method ? ??
-    operations-sorter: alpha      # alpha: ??? ? ?? ??, method: HTTP Method ? ??
   api-docs:
-    path: /api-docs/json
+    path: /api-docs
     groups:
       enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+    groups-order: ASC
+    tags-sorter: alpha
+    operations-sorter: alpha
+    display-request-duration: true
+    doc-expanstion: none
   cache:
     disabled: true
+  override-with-generic-response: false
+  model-and-view-allowed: true
+  default-produces-media-type: application/json
+  default-consumes-media-type: application/json
 
 # DB ??
 server:
@@ -26,6 +31,6 @@ spring:
     show-sql: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: localhost
+    url: jdbc:mysql://localhost:3306/new_year_project
     username: root
     password: dlehdduq798!
