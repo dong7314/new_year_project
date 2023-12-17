@@ -1,6 +1,8 @@
 package com.project.year.user.service.UserService;
 
 import com.project.year.user.domain.dao.User;
+import com.project.year.user.exception.UserErrorCode;
+import com.project.year.user.exception.UserException;
 import com.project.year.user.repository.UserRepository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,7 @@ public class UserService {
         // userName 중복 check
         userRepository.findByUserName(userName)
                 .ifPresent(user -> {
-                    throw new RuntimeException(userName + " 아이디는 이미 존재합니다.");
+                    throw new UserException(UserErrorCode.USERNAME_DUPLICATED, userName + " 아이디는 이미 존재합니다.");
                 });
 
         // 저장
