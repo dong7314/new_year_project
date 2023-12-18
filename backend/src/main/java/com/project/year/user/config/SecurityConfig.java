@@ -22,9 +22,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorizeRequests) ->
-                    authorizeRequests.requestMatchers(new AntPathRequestMatcher("/api/**")).permitAll()
-                            .requestMatchers(new AntPathRequestMatcher("/api/v1/users/join")).permitAll()
-                            .requestMatchers(new AntPathRequestMatcher("/api/v1/users/login")).permitAll()
+                        authorizeRequests
+                                .requestMatchers("/api/**", "/swagger-ui/**", "/api-docs/**").permitAll()
+                                .requestMatchers("/api/v1/users/join", "/api/v1/users/login").permitAll()
+                                .anyRequest().authenticated()
                 ).sessionManagement((sessionManagement) ->
                     sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 ).build();
