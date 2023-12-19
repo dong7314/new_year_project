@@ -44,7 +44,7 @@ public class UserService {
                 .orElseThrow(() -> new UserException(UserErrorCode.USERNAME_NOTFOUND, userName + "이 없습니다."));
 
         // password 틀렸을 때
-        if (encoder.matches(selectedUser.getPassword(), password)) {
+        if (!encoder.matches(password, selectedUser.getPassword())) {
             throw new UserException(UserErrorCode.INVALID_PASSWORD, "패스워드를 잘못 입력 했습니다.");
         }
 
