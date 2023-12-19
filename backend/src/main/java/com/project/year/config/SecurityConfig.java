@@ -1,4 +1,4 @@
-package com.project.year.user.config;
+package com.project.year.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +24,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorizeRequests) ->
                         authorizeRequests
                                 .requestMatchers("/api/**", "/swagger-ui/**", "/api-docs/**").permitAll()
-                                .requestMatchers("/api/v1/users/join", "/api/v1/users/login").permitAll()
+                                .requestMatchers("/api/v1/users/join").permitAll()
+                                .requestMatchers("/api/v1/users/login").permitAll()
                                 .anyRequest().authenticated()
                 ).sessionManagement((sessionManagement) ->
                     sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)

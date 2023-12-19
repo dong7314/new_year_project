@@ -34,3 +34,8 @@ spring:
     url: jdbc:mysql://localhost:3306/new_year_project
     username: root
     password: dlehdduq798!
+
+# jwt token key
+jwt:
+  token:
+    secret: "SecretKey"

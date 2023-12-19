@@ -24,14 +24,22 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	// spring-security 라이브러리
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	// spring-boot 3.0.0 이상 버전 부터는 아래의 openapi 라이브러리를 사용해야 함
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
+	// mysql 연동
 	implementation 'com.mysql:mysql-connector-j:8.1.0'
+	// jwt token 사용 라이브러리
+	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+	implementation 'javax.xml.bind:jaxb-api:2.3.1' // jwt token의 DatatypeConverter 의존성 문제 해결 라이브러리
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// spring security 테스트
+	testImplementation group: 'org.springframework.security', name: 'spring-security-test'
 }
 
 tasks.named('test') {
